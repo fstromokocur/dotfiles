@@ -57,3 +57,4 @@
 (package! lsp-java)
 (package! harpoon)
 (package! android-mode)
+(package! elcord)

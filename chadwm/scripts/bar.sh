@@ -7,10 +7,8 @@
 . ~/.config/chadwm/scripts/bar_themes/onedark
 
 cpu() {
-  cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
-
   printf "^c$black^ ^b$green^ CPU"
-  printf "^c$white^ ^b$grey^ $cpu_val"
+  printf "^c$white^ ^b$grey^ $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%%"
 }
 
 mem() {
@@ -29,5 +27,6 @@ home(){
 
 while true; do
 
-  sleep 1 && xsetroot -name "$updates $(battery) $(brightness) $(home) $(cpu) $(mem) $(wlan) $(clock)"
+ xsetroot -name "$updates $(battery) $(brightness) $(home) $(cpu) $(mem) $(wlan) $(clock)"
+ sleep 5 
 done
